@@ -1,0 +1,28 @@
+<div class="vcenter-main">
+  <div id="sign_in_box" class="signin center-card animated slideInLeft mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Welcome</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <p>Please <a class="mdl-badge" href="https://github.com/settings/tokens/new" target="_blank" data-badge="⿺">generate</a> a new personal access token on Github and paste it below, it will be stored in your browser's localStorage (we won't store your personal data on our servers at all. ever).</p>
+  
+      <p>We need the following scopes:
+        <ul>
+          <li><strong>repo</strong> (all)</li>
+          <li><strong>admin:org</strong> (only read:org)</li>
+        </ul>
+      </p>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="auth_signin_atoken">
+          <!--d6c92e3b7113b68f070821f4147c453066ffe38e-->
+        <label class="mdl-textfield__label" for="auth_signin_atoken">Access Token</label>
+      </div>
+      <span id="sign_in_error" class="mdl-color-text--red-A700">&nbsp;</span>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <button onclick="return MyApp.router._controllers.auth.signIn();" id="sign_in_submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        Continue
+      </button>
+    </div>
+  </div>
+</div>

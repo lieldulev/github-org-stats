@@ -1,0 +1,25 @@
+<div class="vcenter-main">
+  <div id="err_browser_box" class="center-card mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Your browser is not supported</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      Oh dear, we currently only officialy support the latest <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome Browser</a> for a desktop computer.
+      <br /><br />
+      Try using that.
+      <br /> <br />
+      {{#if message}}
+        <hr />
+        Since we don't force Chrome*, we trigger this error once we can't do something, in this case:
+        <br/><br/>
+        <em>
+          {{message}}
+        </em>
+        <br/ >
+        <br/ >
+        <span style="font-size:xx-small">* Hey, it might work on Safari, who knows?</span>
+      {{/if}}
+    </div>
+  </div>
+</div>
+

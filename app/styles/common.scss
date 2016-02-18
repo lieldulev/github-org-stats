@@ -1,0 +1,37 @@
+div.center-card {
+  display: inline-block;
+  text-align: left;
+}
+
+div.stackable-card {
+  display: inline-block;
+  margin: 0.25em;
+  vertical-align: top;
+}
+
+.mdl-navigation__link {
+  color: #acf;
+  min-height: 48px;
+  border-bottom: 0.25em solid transparent;
+  padding-left: 1em;
+  padding-right: 1em;
+  vertical-align:bottom;
+  text-transform: uppercase;
+  line-height:64px;
+}
+
+.mdl-navigation__link:hover {
+  border-bottom: 0.25em solid #acf;
+}
+
+.mdl-layout-title {
+  line-height: 64px;
+  text-decoration: none;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #fefefe;
+}
+
+#loading_message {
+  font-size: x-small;
+}

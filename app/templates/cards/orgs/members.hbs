@@ -1,0 +1,15 @@
+<div id="org_members_box" class="animated flipInY stackable-card mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{membersCount}} Members</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    {{#each members}}
+      <a href="/#orgs/{{../login}}/members/{{login}}" title="{{login}}"><img width=32px src="{{avatar_url}}" /></a>
+    {{/each}}
+  </div>
+  <!--<div class="mdl-card__actions mdl-card--border">-->
+    <!--<a href="/#orgs/{{login}}/members" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">-->
+      <!--All members-->
+    <!--</a>-->
+  <!--</div>-->
+</div>

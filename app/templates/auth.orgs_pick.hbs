@@ -1,0 +1,19 @@
+<div class="vcenter-main">
+  <div id="pick_org_box" class="center-card animated slideInLeft mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Pick Organization</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <span>You will be able to select another organization later.</span>
+    </div>
+    {{#each organizations}}
+      <div class="mdl-card__actions mdl-card--border">
+        <a href="/#orgs/{{this.login}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          <img height="32px" src="{{this.avatar}}" />
+          <span>&nbsp;&nbsp;{{this.login}}
+          </span>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+</div>
