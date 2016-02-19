@@ -72,15 +72,12 @@ Router.listener = function() {
           if (allMatched) {
             found = true;
             if (typeof Router._routes[route].requires === 'function') {
-              console.log('func');
-              console.log(Router._routes[route].requires());
               if (Router._routes[route].requires()) { 
                 eval('Router._controllers.'+Router._routes[route].action+'(collectedParams);');
               } else {
                 mvc.navigateTo(Router._routes[route].or);
               }
             } else if (typeof Router._routes[route].requires === 'boolean') {
-              console.log(Router._routes[route].requires);
               if (Router._routes[route].requires) { 
                 eval('Router._controllers.'+Router._routes[route].action+'(collectedParams);');
               } else {

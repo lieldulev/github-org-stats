@@ -9,7 +9,7 @@
     #splash { font-size:xx-large }
   </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-blue.min.css" />
+  <link rel="stylesheet" href="css/material.indigo-blue.min.css" />
   <link rel="stylesheet" href="css/animate.min.css" /> 
   <link rel="stylesheet" href="css/main.css" /> 
   </head>
@@ -17,11 +17,14 @@
     <div id="main">
       <div id="splash" class="vcenter-main">
         Loading... <br />
-        <progress id="loadingProgress" value="1" max="100" />
+        <progress id="loadingProgress" value="1" max="100"></progress>
+        <div id="loadingMessage">
+          &nbsp;
+        </div>
       </div>
     </div>
     <script src="js/jquery-2.2.0.min.js"></script> 
-    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script src="js/material.min.js"></script>
     <script src="js/store.min.js"></script> 
     <script src="js/github.min.js"></script> 
     <script src="js/handlebars.min.js"></script> 

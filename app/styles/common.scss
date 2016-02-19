@@ -32,6 +32,29 @@ div.stackable-card {
   color: #fefefe;
 }
 
-#loading_message {
+#loadingMessage {
   font-size: x-small;
 }
+
+.priority-high {
+  color: #d40;
+}
+
+.priority-medium {
+  color: #fa5;
+}
+
+.bug {
+  border: 1px solid #d40;
+  border-radius: 2px;
+  background-color: #d40;
+  color: white;
+}
+
+.task {
+  border: 1px solid #04d;
+  border-radius: 2px;
+  background-color: #04d;
+  color: white;
+}
+

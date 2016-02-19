@@ -7,14 +7,14 @@ function mvcRender(template){
 }
 
 function addCard(template) {
-  $('#main')[0].innerHTML += template;
+  $('#main').append($(template));
 }
 
 function addLoadingCard() {
   mvc.addCard(MyApp.templates.cards.common.loading());
 
   setTimeout(function(){
-    componentHandler.upgradeElement(document.getElementById('p1'));
+    componentHandler.upgradeElement(document.getElementById('cardLoadingProgress'));
     $('#close_loading_card').on('click', function(){
       $('#loading_card').animate(
         { width: 0, opacity: 0, height: 0},
@@ -27,7 +27,7 @@ function addLoadingCard() {
 }
 
 function setLoadingMessage(message) {
-  $('#loading_message')[0].innerText = message;
+  $('#loadingMessage')[0].innerHTML = message;
 }
 
 function renderError(message, template) {
@@ -68,5 +68,18 @@ var mvc = {
 window.MyApp.mvc = mvc;
 
 HandlebarsIntl.registerWith(Handlebars);
+
+Handlebars.registerHelper ('truncate', function (str, len) {
+    if (str && str.length > len && str.length > 0) {
+        var new_str = str + " ";
+        new_str = str.substr (0, len);
+        new_str = str.substr (0, new_str.lastIndexOf(" "));
+        new_str = (new_str.length > 0) ? new_str : str.substr (0, len);
+
+        return new Handlebars.SafeString ( new_str +'...' ); 
+    }
+    return str;
+});
+
 
 module.exports = mvc;

@@ -1,19 +1,24 @@
-<div id="org_members_box" class="animated flipInY stackable-card mdl-card mdl-shadow--2dp">
+<div id="org_issues_card" class="animated flipInY stackable-card mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Issues</h2>
+    <h2 class="mdl-card__title-text">{{title}}</h2>
   </div>
   <div class="mdl-card__supporting-text">
-    Some org members
-    <ul>
-      <li>Aaron</li>
-      <li>Benjamin</li>
-      <li>Charles</li>
-      <li>David</li>
-      <li>Eden</li>
-      <li>Frank</li>
-      <li>Gerald</li>
-      <li>Hillel</li>
-    </ul>
+    {{description}}<br />
+    {{#each issues}}
+      <div class="mdl-list__item mdl-list__item--three-line">
+        <span class="mdl-list__item-primary-content" style="font-size:0.85em">
+          <span>{{truncate title 50}}</span><br />
+          <span class="mdl-list__item-sub-title" style="font-size:0.66em">{{repository.name}}/{{number}} <span class="{{featured_labels}}">{{featured_labels}}</span></span>
+        </span>
+        <span class="mdl-list__item-secondary-content">
+          {{#if assignee}} 
+            <img src="{{assignee.avatar_url}}" width="24px" class="mdl-list__item-avatar" />
+          {{else}}
+            <i class="material-icons mdl-list__item-avatar">person</i>
+          {{/if}}
+        </span>
+      </div>
+    {{/each}}
   </div>
   <div class="mdl-card__actions mdl-card--border">
     <a href="/#orgs/{{orgName}}/issues" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
@@ -21,4 +26,5 @@
     </a>
   </div>
 </div>
+
 

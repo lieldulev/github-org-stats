@@ -1,16 +1,16 @@
 <div id="org_overview_box" class="animated flipInY stackable-card mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">{{login}}</h2>
+    <h2 class="mdl-card__title-text">{{org.login}}</h2>
   </div>
   <div class="mdl-card__supporting-text">
-    <em>Plan: {{plan.name}}</em><br/>
-    <em>{{location}}</em><br/>
+    <em>Plan: {{org.plan.name}}</em><br/>
+    <em>{{org.location}}</em><br/>
     <br />
-    {{membersCount}} users are using a total of {{formatNumber disk_usage}} bytes in
-    {{total_private_repos}} private repos and {{public_repos}} public repos. <br/>
+    {{org.membersCount}} users are using a total of {{formatNumber org.disk_usage}} Kilobytes in
+    {{org.total_private_repos}} private repos and {{org.public_repos}} public repos. <br/>
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <a href="/#orgs/{{login}}/overview" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+    <a href="/#orgs/{{org.login}}/overview" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
       More details
     </a>
   </div>
