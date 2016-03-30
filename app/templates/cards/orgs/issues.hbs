@@ -8,7 +8,7 @@
       <div class="mdl-list__item mdl-list__item--three-line">
         <span class="mdl-list__item-primary-content" style="font-size:0.85em">
           <span>{{truncate title 50}}</span><br />
-          <span class="mdl-list__item-sub-title" style="font-size:0.66em">{{repository.name}}/{{number}} <span class="{{featured_labels}}">{{featured_labels}}</span></span>
+          <span class="mdl-list__item-sub-title" style="font-size:0.66em">{{repository.name}}/{{number}} <span class="label {{featured_labels}}">{{featured_labels}}</span></span>
         </span>
         <span class="mdl-list__item-secondary-content">
           {{#if assignee}} 
@@ -21,8 +21,8 @@
     {{/each}}
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <a href="/#orgs/{{orgName}}/issues" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      All Issues
+    <a href="{{action_url}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      {{action}}
     </a>
   </div>
 </div>

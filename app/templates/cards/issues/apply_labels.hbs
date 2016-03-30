@@ -1,0 +1,126 @@
+<div class="vcenter-main">
+  <div id="issues_apply_labels_box" class="center-card animated slideInLeft mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">What: Upgrade Labels</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <p>
+        Github only starts with <strong>7</strong> common labels.
+        That's nice but not quite enough when your issues pool begins to grow and you want to stay productive.
+      </p>
+      <p>
+        Adding the following <strong>9</strong> labels will help you organize your issue better and help us keep you on goal.
+      </p>
+      <p>
+        Learn more about <a href="#">Issues Types<a/>, <a href="#">Issues life cycle</a> and <a href="#">Prioritization</a>.
+      </p>
+    </div>
+    <!--<div class="mdl-card__actions mdl-card--border">-->
+      <!--<a href="#" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">-->
+        <!--TELL ME MORE -->
+      <!--</a>-->
+    <!--</div>-->
+  </div>
+  <div id="issues_apply_labels_repos_box" class="center-card animated slideInLeft mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Where: {{ repoCount }} {{pluralize repoCount 'repository' 'repositories'}}</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <p>
+        We'll create for your the labels in the following {{pluralize repoCount 'repository that is' 'repositories that are'}} missing labels:
+      </p>
+      <ul>
+        {{#each repos }}
+          <li>{{name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div id="issues_apply_labels_guide_box" class="center-card animated slideInLeft mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Which New Labels?</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <table class="labels_table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Exisitng</th>
+            <th>Will be added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left-header">Type</td>
+            <td>
+              <p>
+                <span class="label bug">bug</span><br/>
+                <span class="label enhancement">enhancement</span><br/>
+                <span class="label question">question</span>
+              </p>
+            </td>
+            <td>
+              <p>
+                <span class="label new-feature">new feature</span><br/>
+                <span class="label task">task</span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="left-header">Status</td>
+            <td>
+              <p>
+                <span class="label duplicate">duplicate</span><br/>
+                <span class="label invalid">invalid</span><br/>
+                <span class="label wontfix">wontfix</span><br />
+              </p>
+              <p class="note">Existing labels are used to describe why issues were closed without work</p>
+            </td>
+            <td>
+              <p>
+                <span class="label ready">ready</span><br/>
+                <span class="label in-progress">in progress</span><br/>
+                <span class="label in-review">in review</span><br/>
+                <span class="label testing">testing</span><br/>
+                <span class="note">New labels are used to describe state of open issues</span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="left-header">Priority</td>
+            <td>
+              <p>
+                &nbsp;
+              </p>
+            </td>
+            <td>
+              <p>
+                <span class="label priority-high">priority:urgent</span><br />
+                <span class="label priority-medium">priority:normal</span><br />
+                <span class="label priority-low">priority:low</span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="left-header last-row-cell">Weird</td>
+            <td class="last-row-cell">
+              <p>
+                <span class="label help-wanted">help wanted</span><br/>
+              </p>
+            </td>
+            <td class="last-row-cell">
+              &nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Create labels
+      </a>
+    </div>
+  </div>
+
+</div>
+

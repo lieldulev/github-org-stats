@@ -1,5 +1,6 @@
 var path = require('path');
 var gulp = require('gulp');
+var plumber = require('gulp-plumber');
 var browserify = require('gulp-browserify');
 var handlebars = require('gulp-handlebars');
 var wrap = require('gulp-wrap');
@@ -35,6 +36,7 @@ gulp.task('serve', ['default'], function() {
 // Minify the app for the browser
 gulp.task('javascript', function () {
 	gulp.src('app/client.js')
+    .pipe(plumber())
     .pipe(browserify({
       insertGlobals : true,
       debug : false

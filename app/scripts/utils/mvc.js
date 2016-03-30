@@ -4,6 +4,9 @@ if (typeof window.MyApp === 'undefined') {
 
 function mvcRender(template){
   $('#main')[0].innerHTML = template;
+  console.log('mvcRender');
+  // let Material JS know we (potentially) created new components
+  //componentHandler.upgradeDom();
 }
 
 function addCard(template) {
@@ -32,10 +35,12 @@ function setLoadingMessage(message) {
 
 function renderError(message, template) {
   template = template || 'message';
+  console.log('mvc.renderError');
   mvcRender(MyApp.templates.errors[template]({'message':message}));
 }
 
 function renderLoadingScreen() {
+  console.log('mvc.renderLoadingScreen');
   mvcRender(MyApp.templates.loading());
 }
 
@@ -44,10 +49,21 @@ function loadingProgress(progress) {
   $('#loadingProgress')[0].value = progress;
 }
 
-function navigateTo(route) {
-  document.location.hash = (route == '/' ? '' : route);
+function navigateTo(route, silent) {
+  if (silent) {
+    location.replace(location.toString().split('#')[0]+'#'+(route == '/' ? '' : route));
+  } else {
+    document.location.hash = (route == '/' ? '' : route);
+    location.reload();
+  }
 }
+
+function setTitle(title) {
+  document.title = title 
+}
+
 var mvc = {
+  cards : {},
   render : mvcRender,
   addCard : addCard,
   addLoadingCard : addLoadingCard,
@@ -56,9 +72,18 @@ var mvc = {
   renderLoadingScreen : renderLoadingScreen,
   loadingProgress : loadingProgress,
   navigateTo : navigateTo,
+  setTitle: setTitle,
   newController : function(customMethods) {
     var template = {
-      render : mvc.render
+      render : mvc.render,
+      setTitle : mvc.setTitle,
+      renderError : mvc.renderError,
+      renderLoadingScreen : mvc.renderLoadingScreen,
+      addCard : mvc.addCard,
+      addLoadingCard : mvc.addLoadingCard,
+      loadingProgress : mvc.loadingProgress,
+      setLoadingMessage : mvc.setLoadingMessage,
+      navigateTo : mvc.navigateTo
     };
 
     return $.extend({}, template, customMethods);
@@ -79,6 +104,17 @@ Handlebars.registerHelper ('truncate', function (str, len) {
         return new Handlebars.SafeString ( new_str +'...' ); 
     }
     return str;
+});
+
+Handlebars.registerHelper('pluralize', function(number, singular, plural) {
+    if (number === 1)
+        return singular;
+    else
+        return (typeof plural === 'string' ? plural : singular + 's');
+});
+
+Handlebars.registerHelper('pluralCount', function(number, singular, plural) {
+    return number+' '+Handlebars.helpers.pluralize.apply(this, arguments);
 });
 
 

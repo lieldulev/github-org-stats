@@ -1,4 +1,6 @@
 var mvc = require('./mvc.js');
+var dataPipe = require('./data-pipe.js');
+
 var Router = {
   _routes : {},
   _controllers : {}
@@ -28,26 +30,34 @@ Router.register = function(eventHandler) {
 }
 
 Router.start = function () {
+  console.log('starting');
   Router.listener(); // Simulate a hash change.
 }
 
 Router.listener = function() {
-  var clientSidePath = document.location.hash.toString();
+  var clientSidePath = document.location.hash.toString().trim();
 
-  mvc.renderLoadingScreen();
-
+  // #path or go to /
   if (clientSidePath.indexOf('#') == 0) {
     clientSidePath = clientSidePath.substr(1);
   } else {
     clientSidePath = '/';
   }
 
+  // ignore trailing / (#path/to/ => #path/to), single / is okay.
+  if (clientSidePath.length > 1 && clientSidePath.lastIndexOf('/') == (clientSidePath.length -1)) {
+    clientSidePath = clientSidePath.substr(0, (clientSidePath.length -1));
+  }
+
+
+  mvc.renderLoadingScreen();
+
+  // Simple route (no path params)
   if (Router._routes[clientSidePath]){
     eval('Router._controllers.'+Router._routes[clientSidePath].action+'();');
   } else {
-
-    var found = false;
     // try to see if match fuzzy routrs
+    var found = false;
     for(route in Router._routes) {
       if (route.indexOf('{') != -1) {
         var routeParts = route.split('/');

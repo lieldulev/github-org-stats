@@ -1,12 +1,27 @@
 div.center-card {
   display: inline-block;
   text-align: left;
+  vertical-align: top;
 }
 
 div.stackable-card {
   display: inline-block;
   margin: 0.25em;
   vertical-align: top;
+}
+
+p.note {
+  padding-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-size: 0.75em;
+  line-height: 1.5em;
+}
+span.note {
+  display: block;
+  padding-top: 0.5em;
+  margin-bottom: 0em;
+  font-size: 0.645em;
+  line-height: 1.5em;
 }
 
 .mdl-navigation__link {
@@ -36,25 +51,7 @@ div.stackable-card {
   font-size: x-small;
 }
 
-.priority-high {
-  color: #d40;
-}
 
-.priority-medium {
-  color: #fa5;
-}
-
-.bug {
-  border: 1px solid #d40;
-  border-radius: 2px;
-  background-color: #d40;
-  color: white;
-}
-
-.task {
-  border: 1px solid #04d;
-  border-radius: 2px;
-  background-color: #04d;
-  color: white;
-}
-
+/*#issues_apply_labels_box {*/
+  /*width: 330px;*/
+/*}*/

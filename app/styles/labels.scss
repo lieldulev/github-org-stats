@@ -1,0 +1,130 @@
+#issues_apply_labels_box > div.mdl-card__title {
+  color: #fafafa;
+  background: url('/images/labels2.jpg') center / cover;
+  height:121px;
+}
+
+.label {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 1px;
+  background-color: #cccccc;
+  border-color: #cccccc;
+  white-space: nowrap;
+  font-size: x-small;
+  font-weight:bold;
+}
+
+.priority-high {
+  border-color: #f7c6c7;
+  background-color: #f7c6c7;
+  color: black;
+}
+
+.priority-medium {
+  border-color: #fad8c7;
+  background-color: #fad8c7;
+  color: black;
+}
+
+.priority-low {
+  border-color: #fef2c0;
+  background-color: #fef2c0;
+  color: black;
+}
+
+.bug {
+  border-color: #fc2929;
+  background-color: #fc2929;
+  color: white;
+}
+
+.task {
+  border-color: #bfdadc;
+  background-color: #bfdadc;
+  /*color: white;*/
+}
+.new-feature {
+  background-color: #bfe5bf;
+  border-color: #bfe5bf;
+}
+.duplicate {
+  background-color: #cccccc;
+  border-color: #cccccc;
+}
+.ready {
+  background-color: #bfd4f2;
+  border-color: #bfd4f2;
+}
+.in-progress {
+  background-color: #207de5;
+  border-color: #207de5;
+  color: white;
+}
+.in-review {
+  background-color: #5319e7;
+  border-color: #5319e7;
+  color: white;
+}
+.testing {
+  background-color: #006b75;
+  border-color: #006b75;
+  color: white;
+}
+.enhancement {
+  background-color: #84b6eb;
+  border-color: #84b6eb;
+}
+.help-wanted {
+  background-color: #159818;
+  border-color: #159818;
+  color: white;
+}
+.invalid {
+  background-color: #e6e6e6;
+  border-color: #e6e6e6
+}
+.question {
+  background-color: #cc317c;
+  border-color: #cc317c;
+  color: white;
+}
+.wontfix {
+  background-color: #fff;
+}
+
+table.labels_table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-size: x-small;
+}
+table.labels_table tr {
+  margin: 0px;
+}
+table.labels_table td {
+  vertical-align: top;
+  border-bottom: 1px solid #e6e6e6;
+  border-spacing: 0px;
+  margin: 0px;
+  padding: 0.25em;
+  text-align:center;
+}
+
+table.labels_table td.last-row-cell {
+  border-bottom: none;
+}
+table.labels_table thead {
+  border-bottom: 1px solid #e6e6e6;
+  /*background-color: #e6e6e6;*/
+  text-align:center;
+}
+table.labels_table thead th{
+  padding: 0.25em;
+}
+
+table.labels_table td.left-header{
+  /*background-color: #e6e6e6;*/
+  text-align:center;
+}

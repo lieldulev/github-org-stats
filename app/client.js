@@ -29,6 +29,7 @@ router.controllers({
   'sign_out' : 'auth.signOut',
   'orgs_pick' : 'auth.orgsPick',
   'orgs/{orgName}' : {action: 'orgs.dashboard', requires: go.isAuthenticated, or: 'sign_in'},
+  'orgs/{orgName}/upgrade/labels' : {action: 'orgs.apply_labels', requires: go.isAuthenticated, or: 'sign_in'},
   'orgs/{orgName}/members/{member}' : 'members.show'
 }).register();
 
