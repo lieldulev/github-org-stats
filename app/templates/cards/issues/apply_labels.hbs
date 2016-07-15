@@ -9,7 +9,7 @@
         That's nice but not quite enough when your issues pool begins to grow and you want to stay productive.
       </p>
       <p>
-        Adding the following <strong>9</strong> labels will help you organize your issue better and help us keep you on goal.
+        Adding the following <strong>10</strong> labels will help you organize your issue better and help us keep you on goal.
       </p>
       <p>
         Learn more about <a href="#">Issues Types<a/>, <a href="#">Issues life cycle</a> and <a href="#">Prioritization</a>.
@@ -21,21 +21,6 @@
       <!--</a>-->
     <!--</div>-->
   </div>
-  <div id="issues_apply_labels_repos_box" class="center-card animated slideInLeft mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">Where: {{ repoCount }} {{pluralize repoCount 'repository' 'repositories'}}</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-      <p>
-        We'll create for your the labels in the following {{pluralize repoCount 'repository that is' 'repositories that are'}} missing labels:
-      </p>
-      <ul>
-        {{#each repos }}
-          <li>{{name}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
   <div id="issues_apply_labels_guide_box" class="center-card animated slideInLeft mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
       <h2 class="mdl-card__title-text">Which New Labels?</h2>
@@ -45,7 +30,7 @@
         <thead>
           <tr>
             <th>&nbsp;</th>
-            <th>Exisitng</th>
+            <th>Github's default</th>
             <th>Will be added</th>
           </tr>
         </thead>
@@ -79,15 +64,21 @@
             <td>
               <p>
                 <span class="label ready">ready</span><br/>
+                <span class="down-arrow">▼</span><br />
                 <span class="label in-progress">in progress</span><br/>
+                <span class="down-arrow">▼</span><br />
                 <span class="label in-review">in review</span><br/>
+                <span class="down-arrow">▼</span><br />
                 <span class="label testing">testing</span><br/>
                 <span class="note">New labels are used to describe state of open issues</span>
               </p>
             </td>
           </tr>
           <tr>
-            <td class="left-header">Priority</td>
+            <td class="left-header">Priority
+              <span clss="note">
+              </a>
+            </td>
             <td>
               <p>
                 &nbsp;
@@ -102,18 +93,44 @@
             </td>
           </tr>
           <tr>
-            <td class="left-header last-row-cell">Weird</td>
+            <td class="left-header last-row-cell">Community
+              <span clss="note">
+                <a href="http://up-for-grabs.net/" target="_blank">Learn more</a>
+              </a>
+            </td>
             <td class="last-row-cell">
               <p>
                 <span class="label help-wanted">help wanted</span><br/>
               </p>
             </td>
             <td class="last-row-cell">
-              &nbsp;
+              <p>
+                <span class="label up-for-grubs">up-for-grabs</span><br/>
+              </p>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div id="issues_apply_labels_repos_box" class="center-card animated slideInLeft mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Where: {{ repoCount }} {{pluralize repoCount 'repository' 'repositories'}}</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <p>
+      We'll create for you the labels in the following {{pluralize repoCount 'repository' 'repositories'}}
+      </p>
+      <ul>
+        {{#each repos }}
+          <li>
+            <a href="https://github.com/{{../orgName }}/{{name}}/labels">{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+      {{#if reposDiff }}
+      And {{ reposDiff }} other {{pluralize reposDiff 'repository' 'repositories'}}.
+      {{/if}}
     </div>
     <div class="mdl-card__actions mdl-card--border">
       <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -121,6 +138,4 @@
       </a>
     </div>
   </div>
-
 </div>
-

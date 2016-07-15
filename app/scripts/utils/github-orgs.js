@@ -16,7 +16,15 @@ var typeLabels = ['bug','enhancement','question','new feature','task'];
 var typeLabelsColors = ['fc2929','84b6eb','cc317c','bfe5bf','bfdadc'];
 var statusLabels = ['duplicate','invalid','wontfix','ready','in progress','in review','testing'];
 var statusLabelsColors = ['cccccc','e6e6e6','ffffff','bfd4f2','207de5','5319e7','006b75'];
+var communityLabels = ['help wanted', 'up-for-grubs'];
+var communityLabelsColors = ['159818', '39382e'];
 
+var allLabels = priorityLabels.concat(typeLabels, statusLabels, communityLabels);
+var labelsColors = {};
+var allColors = priorityLabelsColors.concat(typeLabelsColors, statusLabelsColors, communityLabelsColors);
+$.each(allLabels, function(k,v) {
+  labelsColors[v] = allColors[k];
+});
 function updateLimits(xhr){
   __rlRemaining = xhr.getResponseHeader('X-RateLimit-Remaining');
   __rlReset = xhr.getResponseHeader('X-RateLimit-Reset');
@@ -208,10 +216,11 @@ function fetchRepoLabels(orgName, repoName, cb) {
   var self = this;
   getRequest('/repos/'+orgName+'/'+repoName+'/labels', function(err, data){
     if (err) {
-      cb(err); 
+      cb(err);
     } else {
       var storedRepos =  self.orgLoad(orgName, 'repos');
       storedRepos[repoName].labels = data.map(function(el){return el.name});
+      storedRepos[repoName].missingLabels = MyApp.utils.arrayDiff(allLabels, storedRepos[repoName].labels.toString().toLowerCase().split(','));
       self.orgSave(orgName, 'repos', storedRepos);
       cb(null, storedRepos);
     }
@@ -219,6 +228,10 @@ function fetchRepoLabels(orgName, repoName, cb) {
 }
 
 function orgDetails(orgName, cb) {
+  orgDetailsOptions(orgName, true, cb);
+}
+
+function orgDetailsOptions(orgName, issues, cb) {
   var self = this;
   var storedDetails = self.orgLoad(orgName, 'details');
   // Already have the details, return them
@@ -228,7 +241,7 @@ function orgDetails(orgName, cb) {
   // Now go refresh
   getRequest('/orgs/' + orgName, function(err, data) {
     if (err) {
-      cb(err); 
+      cb(err);
     } else {
       getRequestAll('/orgs/' + orgName + '/members?type=all&&page_num=1000&sort=updated&direction=desc', function(err, members) {
         if (err) {
@@ -249,8 +262,10 @@ function orgDetails(orgName, cb) {
           // enqueue loading repos
           self.fetchOrgRepos(orgName);
 
-          // enqueue loading issues and open PRs
-          self.fetchOrgIssuesPrs(orgName);
+          if (issues) {
+            // enqueue loading issues and open PRs
+            self.fetchOrgIssuesPrs(orgName);
+          }
         }
       });
     }
@@ -312,6 +327,7 @@ var go = $.extend({
   hasToken : hasToken,
   authGithub : authGithub,
   orgDetails : orgDetails,
+  orgDetailsOptions : orgDetailsOptions,
   fetchOrgIssuesPrs: fetchOrgIssuesPrs,
   fetchOrgRepos : fetchOrgRepos,
   fetchRepoLabels: fetchRepoLabels,
@@ -321,8 +337,11 @@ var go = $.extend({
   labels : {
     priorityLabels: priorityLabels,
     typeLabels: typeLabels,
-    statusLabels: statusLabels
-  }
+    statusLabels: statusLabels,
+    communityLabels: communityLabels,
+    allLabels: allLabels
+  },
+  labelsColors : labelsColors
 }, common.eventEmitter());
 
 window.MyApp.go = go;

@@ -32,19 +32,40 @@ var orgs = mvc.newController({
 
   apply_labels : function(params) {
     var self = this;
-    MyApp.go.orgDetails(params['orgName'], function(err, data) {
+    mvc.loadingProgress(5);
+    mvc.setLoadingMessage("Loading organization details.");
+    window.MyApp.dataPipe.on('orgUpdated', function() {
+      mvc.loadingProgress(15);
+      mvc.setLoadingMessage("Loading repositories.");
+    });
+    window.MyApp.dataPipe.on('repoFetched', function() {
+      mvc.loadingProgress(35);
+      mvc.setLoadingMessage("Analyzing labels...");
+    });
+    MyApp.go.orgDetailsOptions(params['orgName'], false, function(err, data) {
       if (err) {
         return mvc.renderError('Organization was not found.', '404');
       } else {
-        mvc.render(MyApp.templates.cards.issues.apply_labels({repoCount : 3, repos : [{name: 'Systems'}, {name: 'scala-utils-net'}, {name: 'umd-scala-api'}] }));
-        self.setTitle('Upgrade Labels ('+params['orgName']+')');
+        window.MyApp.dataPipe.on('reposLabelsUpdated', function(data) {
+          console.log(data);
+          var badRepos = [];
+          $.each(data, function(i, val) {
+            if (val.missingLabels.length > 0) {
+              badRepos.push($.extend({missingLabelsCount: val.missingLabels.length, missingLabels: val.missingLabels}, val));
+            }
+          });
+          mvc.render(MyApp.templates.cards.issues.apply_labels({repoCount : Object.keys(badRepos).length, orgName: params['orgName'], repos : badRepos.slice(0, 10), reposDiff: (Object.keys(badRepos).length > 10 ? (Object.keys(badRepos).length - 10) : 0)}));
+          self.setTitle('Upgrade Labels ('+params['orgName']+')');
+        //mvc.addLoadingCard();
+        //mvc.setLoadingMessage('Loading cards...');
 
 
-        // Upgrade dynamically 
-        //componentHandler.upgradeElement(document.getElementById('reposTT'), 'MaterialTooltip');
-        $('#reposTTAnchor').mouseenter(function(){
-          console.log("150px", ($("#reposTTAnchor").css("top")));
-          setTimeout(function(){$('#reposTT').css({"left" : "150px", "top" : ($("#reposTTAnchor").css("top"))}); }, 50);
+          // Upgrade dynamically 
+          //componentHandler.upgradeElement(document.getElementById('reposTT'), 'MaterialTooltip');
+          //$('#reposTTAnchor').mouseenter(function(){
+            //console.log("150px", ($("#reposTTAnchor").css("top")));
+            //setTimeout(function(){$('#reposTT').css({"left" : "150px", "top" : ($("#reposTTAnchor").css("top"))}); }, 50);
+          //});
         });
       }
     });

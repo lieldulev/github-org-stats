@@ -73,10 +73,14 @@ var intersectArrays = function (a, b)
   return result;
 }
 
+var arrayDiff = function(a, b) {
+    return a.filter(function(i) {return b.indexOf(i) < 0;});
+};
 
 window.MyApp.utils = window.MyApp.utils || {};
 
 window.MyApp.utils.eventEmitter = eventEmitter;
 window.MyApp.utils.intersectArrays = intersectArrays;
+window.MyApp.utils.arrayDiff = arrayDiff;
 
 module.exports = window.MyApp.utils;
