@@ -87,13 +87,13 @@ var auth = mvc.newController({
 
         if ( templateData['organizations'].length == 0) {
           mvc.render(MyApp.templates.auth.no_orgs({'username' : go.login}));
-          self.setTitle('No Organizations');
+          mvc.setTitle('No Organizations');
         } else if ( templateData['organizations'].length == 1) {
           mvc.navigateTo("orgs/"+templateData['organizations']['login']);
         } else {
           templateData['organizations'].sort(function(a,b){return a.login > b.login});
           mvc.render(MyApp.templates.auth.orgs_pick(templateData));
-          self.setTitle('Choose Organization');
+          mvc.setTitle('Choose Organization');
         }
       }
     });

@@ -228,7 +228,7 @@ function fetchRepoLabels(orgName, repoName, cb) {
 }
 
 function orgDetails(orgName, cb) {
-  orgDetailsOptions(orgName, true, cb);
+  orgDetailsOptions.call(this, orgName, true, cb);
 }
 
 function orgDetailsOptions(orgName, issues, cb) {
